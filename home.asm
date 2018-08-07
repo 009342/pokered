@@ -1165,8 +1165,7 @@ CloseTextDisplay::
 	dec c
 	jr nz, .restoreSpriteFacingDirectionLoop
 	ld a, BANK(InitMapSprites)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call InitMapSprites ; reload sprite tile pattern data (since it was partially overwritten by text tile patterns)
 	ld hl, wFontLoaded
 	res 0, [hl]
@@ -1175,8 +1174,7 @@ CloseTextDisplay::
 	call z, LoadPlayerSpriteGraphics
 	call LoadCurrentMapView
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	jp UpdateSprites
 
 DisplayPokemartDialogue::
@@ -1191,12 +1189,10 @@ DisplayPokemartDialogue::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, Bank(DisplayPokemartDialogue_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call DisplayPokemartDialogue_
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	jp AfterDisplayingTextID
 
 PokemartGreetingText::
@@ -1230,12 +1226,10 @@ DisplayPokemonCenterDialogue::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, Bank(DisplayPokemonCenterDialogue_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call DisplayPokemonCenterDialogue_
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	jp AfterDisplayingTextID
 
 DisplaySafariGameOverText::
@@ -1326,12 +1320,10 @@ RemoveItemFromInventory::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(RemoveItemFromInventory_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call RemoveItemFromInventory_
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret
 
 ; function to add an item (in varying quantities) to the player's bag or PC box
@@ -1345,13 +1337,11 @@ AddItemToInventory::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(AddItemToInventory_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call AddItemToInventory_
 	pop bc
 	ld a, b
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	pop bc
 	ret
 
@@ -1887,8 +1877,7 @@ GetMonName::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(MonsterNames)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ld a, [wd11e]
 	dec a
 	ld hl, MonsterNames
@@ -1903,8 +1892,7 @@ GetMonName::
 	ld [hl], "@"
 	pop de
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	pop hl
 	ret
 
@@ -2037,8 +2025,7 @@ ReloadMapData::
 	call LoadTilesetTilePatternData
 	call EnableLCD
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret
 
 ; reloads tileset tile patterns
@@ -2051,8 +2038,7 @@ ReloadTilesetTilePatterns::
 	call LoadTilesetTilePatternData
 	call EnableLCD
 	pop af
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret
 
 ; shows the town map and lets the player choose a destination to fly to
@@ -2091,13 +2077,11 @@ TossItem::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(TossItem_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call TossItem_
 	pop de
 	ld a, d
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret
 
 ; checks if an item is a key item
@@ -2125,13 +2109,11 @@ DisplayTextBoxID::
 	ld a, [H_LOADEDROMBANK]
 	push af
 	ld a, BANK(DisplayTextBoxID_)
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	call DisplayTextBoxID_
 	pop bc
 	ld a, b
-	ld [H_LOADEDROMBANK], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret
 
 ; not zero if an NPC movement script is running, the player character is

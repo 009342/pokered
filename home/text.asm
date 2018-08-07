@@ -128,6 +128,18 @@ HangulCheck::
 	call BankswitchCommon
 	jr .Done
 .NotHangul
+	cp a,$80
+	jr c,.NotEnglish
+	ld c,a
+	ld a,[H_LOADEDROMBANK]
+	push af
+	ld a,BANK(PrintEnglish)
+	call BankswitchCommon
+	call PrintEnglish
+	pop af
+	call BankswitchCommon
+	jr .Done
+.NotEnglish
 	ld [hli], a
 .Done
 	call PrintLetterDelay

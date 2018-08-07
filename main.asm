@@ -2096,6 +2096,10 @@ INCLUDE "engine/overworld/elevator.asm"
 
 INCLUDE "engine/items/tm_prices.asm"
 
+SECTION "LegacyFont",ROMX[$4000],BANK[$30]
+LegacyFont::
+INCBIN "gfx/font_legacy.1bpp"
+
 SECTION "HangulFont30",ROMX[$5000],BANK[$30]
 INCBIN "hangul/font/font30.fnt"
 
