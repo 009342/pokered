@@ -9,6 +9,8 @@ This branch includes the implementation of Korean language processing, not Korea
 To set up the repository, see [**INSTALL.md**](INSTALL.md).
 
 ## Credits
+- Decompiled Code : [pret's pokered][pokered]
+
 - 009342 : Main code
 
 ## Open Source License
