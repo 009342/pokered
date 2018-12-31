@@ -41,3 +41,5 @@ For more information about open source license, see : https://github.com/009342/
 [pokeruby]: https://github.com/pret/pokeruby
 [pokefirered]: https://github.com/pret/pokefirered
 [pokeemerald]: https://github.com/pret/pokeemerald
+[Discord]: https://discord.gg/6EuWgX9
+[irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret

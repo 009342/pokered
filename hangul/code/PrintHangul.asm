@@ -270,9 +270,6 @@ FindAvailableTiles:
 .Done
 	pop af
 	ret
-
-FindAvailableTiles2:
-
 	
 FindAvailableEnglishTile: ; a : Tile return : Tile-$80
 	push hl
